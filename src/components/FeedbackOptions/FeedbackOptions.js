@@ -3,27 +3,27 @@ import s from "./FeedbackOptions.module.css";
 import PropTypes from "prop-types";
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  //   const { good, neutral, bad } = options;
-  return (
-    <>
-      <button onClick={() => onLeaveFeedback("good")} className={s.btn}>
-        Good
+  return options.map((el) => {
+    return (
+      <button onClick={() => onLeaveFeedback(el)} className={s.btn} key={el}>
+        {el}
       </button>
-      <button onClick={() => onLeaveFeedback("neutral")} className={s.btn}>
-        Neutral
-      </button>
-      <button onClick={() => onLeaveFeedback("bad")} className={s.btn}>
-        Bad
-      </button>
-    </>
-  );
+    );
+  });
+  // <>
+  //   <button onClick={() => onLeaveFeedback("good")} className={s.btn}>
+  //     Good
+  //   </button>
+  //   <button onClick={() => onLeaveFeedback("neutral")} className={s.btn}>
+  //     Neutral
+  //   </button>
+  //   <button onClick={() => onLeaveFeedback("bad")} className={s.btn}>
+  //     Bad
+  //   </button>
+  // </>
 };
 FeedbackOptions.propTypes = {
-  options: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 
